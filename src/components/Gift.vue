@@ -9,10 +9,7 @@
       :class="['gift', config.style]"
       :style="`transform: rotateX(${rotate * index}deg) translateZ(${translateZ}px)`"
     >
-      <template v-if="gift.type === 'text'">{{ gift.name }}</template>
-      <template v-else-if="gift.type === 'image'">
-        <img :src="gift.path" :height="config.height" />
-      </template>
+      <img :src="imgUrl(index)" :height="config.height" />
     </div>
   </div>
 </template>
@@ -61,10 +58,13 @@ const setConfig = () => {
 
 // === 記錄每個獎品的角度範圍 ===
 const logGiftsDeg = () => {
-  giftsDeg.value = props.config.gifts.map((gift, index) => {
-    const from = index === 0 ? 0 : giftsDeg.value[index - 1].to
-    const to = index === 0 ? rotate.value : giftsDeg.value[index - 1].to + rotate.value
-    return { from, to, name: gift.name }
+  // 紀錄獎品角度
+  props.config.gifts.forEach((gift, index) => {
+    giftsDeg.value[index] = {
+      from: index === 0 ? 0 : giftsDeg.value[index - 1].to,
+      to: index === 0 ? rotate.value : giftsDeg.value[index - 1].to + rotate.value,
+      name: gift.name
+    }
   })
 }
 
@@ -100,6 +100,11 @@ const autoTurnStop = () => {
 
   isRunning.value = false
   emit('finished', giftName)
+}
+
+const imgUrl = (index) => {
+  const url = `./../assets/slotImg/img_${index}.jpg`
+  return new URL(url, import.meta.url).href
 }
 
 // === 監聽 ===
