@@ -19,7 +19,33 @@
       <img :src="imgUrl(index)" />
       </swiper-slide>
     </swiper>
+    <div class="container first">
+      <div class="marquee">
+        <ul>
+          <li><span class="text">WEDDING DAY</span></li>
+        </ul>
+        <ul aria-hidden="true">
+          <li>
+            <span class="text">WEDDING DAY</span>
+          </li>
+        </ul>
+
+      </div>
+    </div>
     <div class="container">
+      <div class="marquee">
+        <ul>
+          <li><span class="text">WEDDING DAY</span></li>
+        </ul>
+        <ul aria-hidden="true">
+          <li>
+            <span class="text">WEDDING DAY</span>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+    <div class="container second">
       <div class="marquee">
         <ul>
           <li><span class="text">WEDDING DAY</span></li>
@@ -90,6 +116,17 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+  &.first {
+    top: 20%;
+    left: 20%;
+  }
+  &.second {
+    top: 90%;
+    left: 70%;
+    ul {
+      animation-delay: 1000ms;
+    }
+  }
 }
 
 .marquee {
