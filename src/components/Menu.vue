@@ -1,6 +1,7 @@
 <template>
   <header id="header" class="header">
     <button
+      ref="hamburger"
       :class="['header__hamburger', { 'is-active': isShowMenu }]"
       type="button"
       @click="isShowMenu = !isShowMenu"
@@ -10,7 +11,7 @@
       <span class="header__hamburger-line"></span>
     </button>
 
-    <div :class="['header__menu', { 'is-active': isShowMenu }]">
+  <div ref="menu" :class="['header__menu', { 'is-active': isShowMenu }]">
       <div class="header__menu-bg"></div>
 
       <nav class="header__nav">
@@ -22,7 +23,7 @@
           >
             <router-link
               :to="`/${item.path}`"
-              class="header__nav-link"
+              class="header__nav-link XXXXXXXXXX"
               @click="closeMenu"
             >
               {{ item.title }}
@@ -36,8 +37,10 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, onMounted } from "vue"
+import { ref, watch, computed, onMounted, nextTick } from "vue"
 
+const hamburger = ref(null)
+const menu = ref(null)
 const isShowMenu = ref(false)
 const navItems = ref([
   { title: "HOME", subTitle: "Home sweet home", path: "" },
@@ -45,16 +48,41 @@ const navItems = ref([
   { title: "QUEST", subTitle: "Quest", path: "quest" },
 ])
 
-const closeMenu = () => {
-  $hamburger.removeClass('is-active')
+const closeMenu = async () => {
+  // ensure DOM refs are available
+  await nextTick()
 
-  $menu.addClass('is-closing')
+  // remove active class from hamburger
+  if (hamburger.value && hamburger.value.classList) {
+    hamburger.value.classList.remove('is-active')
+  }
 
-  setTimeout(() => {
-    $menu.removeClass('is-active is-closing')
-  }, 600)
+  // add closing class to trigger CSS closing animation, then remove active/closing
+  if (menu.value && menu.value.classList) {
+    menu.value.classList.add('is-closing')
+
+    setTimeout(() => {
+      menu.value.classList.remove('is-active')
+      menu.value.classList.remove('is-closing')
+    }, 600)
+  }
+
+  // also update reactive state
+  isShowMenu.value = false
 }
-const showMenu = () => {}
+
+const showMenu = () => {
+  // make sure active class toggles correctly when opening
+  isShowMenu.value = true
+  nextTick(() => {
+    if (hamburger.value && hamburger.value.classList) {
+      hamburger.value.classList.add('is-active')
+    }
+    if (menu.value && menu.value.classList) {
+      menu.value.classList.add('is-active')
+    }
+  })
+}
 </script>
 
 <style scoped lang="scss">
