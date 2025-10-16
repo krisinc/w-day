@@ -19,7 +19,7 @@
       <img :src="imgUrl(index)" />
       </swiper-slide>
     </swiper>
-    <div class="container first">
+    <!-- <div class="container first">
       <div class="marquee">
         <ul>
           <li><span class="text">WEDDING DAY</span></li>
@@ -55,9 +55,8 @@
             <span class="text">WEDDING DAY</span>
           </li>
         </ul>
-
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -70,8 +69,7 @@ import 'swiper/css';
 
 const modules = [Autoplay]
 const imgUrl = (index) => {
-  const url = `./../../assets/swiperImg/img_${index}.jpg`
-  return new URL(url, import.meta.url).href
+  return new URL(`/src/assets/swiperImg/img_${index}.jpg`, import.meta.url).href
 }
 
 onMounted(() => {
