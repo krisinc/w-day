@@ -19,7 +19,7 @@
       <img :src="imgUrl(index)" />
       </swiper-slide>
     </swiper>
-    <!-- <div class="container first">
+    <div class="container first">
       <div class="marquee">
         <ul>
           <li><span class="text">WEDDING DAY</span></li>
@@ -56,7 +56,7 @@
           </li>
         </ul>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
