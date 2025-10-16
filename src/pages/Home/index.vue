@@ -19,6 +19,7 @@
       <img :src="imgUrl(index)" />
       </swiper-slide>
     </swiper>
+
     <div class="container first">
       <div class="marquee">
         <ul>
@@ -96,6 +97,7 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
 .swiper-slide {
   width: 100vw !important;
   height: 100vh !important;
@@ -105,6 +107,10 @@ body {
   img {
     width: auto;
     height: 100%;
+    @include scssMixin.sp {
+      width: 100%;
+      height: auto;
+    }
   }
 }
 
