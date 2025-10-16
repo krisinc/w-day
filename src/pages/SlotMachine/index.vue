@@ -6,7 +6,7 @@
 
     <div class="body">
       <div class="window">
-        <div class="container">
+        <div class="slot__container">
           <Gift
             v-for="(config, index) in configs"
             :key="index"
@@ -181,7 +181,7 @@ onMounted(() => {
       box-shadow: 0 -10px 15px rgba(0, 0, 0, 0.2) inset;
     }
 
-    .container {
+    .slot__container {
       width: 900px;
       height: 500px;
       position: relative;
@@ -311,47 +311,6 @@ onMounted(() => {
       left: -6px;
       top: -6px;
       content: ' ';
-    }
-  }
-
-  .resultList {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 9999;
-    display: flex;
-    visibility: hidden;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.4);
-    opacity: 0;
-    transition: 500ms;
-
-    &.openResultList {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    &-container {
-      position: absolute;
-      padding: 20px;
-      min-width: 600px;
-      height: 400px;
-      border: solid 5px $blue;
-      border-radius: 30px;
-      background-color: $white;
-      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
-      overflow-y: auto;
-
-      .result {
-        font-family: 'Lobster', cursive;
-        padding: 15px;
-        list-style: none;
-        color: $blue;
-        font-size: 60px;
-      }
     }
   }
 

@@ -136,17 +136,17 @@ body {
   transform: rotate(-17deg);
   // font-family: Lobster;
   font-family: "Zen Tokyo Zoo";
-}
 
-ul {
-  list-style: none;
-  flex-shrink: 0;
-  min-width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--gap);
-  animation: marquee 8s linear infinite;
+  ul {
+    list-style: none;
+    flex-shrink: 0;
+    min-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--gap);
+    animation: marquee 8s linear infinite;
+  }
 }
 
 .text {
