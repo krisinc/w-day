@@ -2,7 +2,7 @@
 import { nextTick } from 'vue'
 import {
   createRouter,
-  createWebHashHistory
+  createWebHistory
 } from 'vue-router'
 
 const routes = [
@@ -55,7 +55,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory('/'),
   routes,
   scrollBehavior(to, from, savedPosition) {
     const container = document.getElementById('router-view-container')
