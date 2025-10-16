@@ -35,6 +35,11 @@ const routes = [
     name: 'slotMachine',
     component: () => import('../pages/SlotMachine/index.vue')
   },
+  {
+    path: '/quest',
+    name: 'quest',
+    component: () => import('../pages/Quest/index.vue')
+  },
   // {
   //   path: '/',
   //   meta: { menuAction: 'home' },

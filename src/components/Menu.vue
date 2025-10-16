@@ -44,7 +44,7 @@ const menu = ref(null)
 const isShowMenu = ref(false)
 const navItems = ref([
   { title: "HOME", subTitle: "Home sweet home", path: "" },
-  { title: "", subTitle: "slotMachine", path: "slotMachine" },
+  { title: "GAME ON!", subTitle: "Kit Kat!", path: "slotMachine" },
   { title: "QUEST", subTitle: "Quest", path: "quest" },
 ])
 
@@ -82,6 +82,15 @@ const showMenu = () => {
       menu.value.classList.add('is-active')
     }
   })
+// const closeMenu = () => {
+//   document.getElementsByClassName('header__hamburger')[0].classList.remove('is-active')
+
+//   document.getElementsByClassName('header__menu')[0].classList.add('is-closing')
+
+//   setTimeout(() => {
+//     // document.getElementsByClassName('header__menu')[0].classList.remove('is-active is-closing')
+//     isShowMenu.value = false
+//   }, 600)
 }
 </script>
 
