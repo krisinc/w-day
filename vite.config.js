@@ -4,8 +4,7 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // base: process.env.BASE || '/w-day/',
-  base: '/',
+  base: process.env.BASE || '/w-day/',
   resolve: {
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,
