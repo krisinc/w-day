@@ -1,6 +1,7 @@
 <template>
   <header id="header" class="header">
     <button
+      ref="hamburger"
       :class="['header__hamburger', { 'is-active': isShowMenu }]"
       type="button"
       @click="isShowMenu = !isShowMenu"
@@ -10,7 +11,7 @@
       <span class="header__hamburger-line"></span>
     </button>
 
-    <div :class="['header__menu', { 'is-active': isShowMenu }]">
+  <div ref="menu" :class="['header__menu', { 'is-active': isShowMenu }]">
       <div class="header__menu-bg"></div>
 
       <nav class="header__nav">
@@ -22,7 +23,7 @@
           >
             <router-link
               :to="`/${item.path}`"
-              class="header__nav-link"
+              class="header__nav-link XXXXXXXXXX"
               @click="closeMenu"
             >
               {{ item.title }}
@@ -36,8 +37,10 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, onMounted } from "vue"
+import { ref, watch, computed, onMounted, nextTick } from "vue"
 
+const hamburger = ref(null)
+const menu = ref(null)
 const isShowMenu = ref(false)
 const navItems = ref([
   { title: "HOME", subTitle: "Home sweet home", path: "" },
@@ -45,39 +48,53 @@ const navItems = ref([
   { title: "QUEST", subTitle: "Quest", path: "quest" },
 ])
 
-const closeMenu = () => {
-  document.getElementsByClassName('header__hamburger')[0].classList.remove('is-active')
+const closeMenu = async () => {
+  // ensure DOM refs are available
+  await nextTick()
 
-  document.getElementsByClassName('header__menu')[0].classList.add('is-closing')
+  // remove active class from hamburger
+  if (hamburger.value && hamburger.value.classList) {
+    hamburger.value.classList.remove('is-active')
+  }
 
-  setTimeout(() => {
-    // document.getElementsByClassName('header__menu')[0].classList.remove('is-active is-closing')
-    isShowMenu.value = false
-  }, 600)
+  // add closing class to trigger CSS closing animation, then remove active/closing
+  if (menu.value && menu.value.classList) {
+    menu.value.classList.add('is-closing')
+
+    setTimeout(() => {
+      menu.value.classList.remove('is-active')
+      menu.value.classList.remove('is-closing')
+    }, 600)
+  }
+
+  // also update reactive state
+  isShowMenu.value = false
 }
-const showMenu = () => {}
+
+const showMenu = () => {
+  // make sure active class toggles correctly when opening
+  isShowMenu.value = true
+  nextTick(() => {
+    if (hamburger.value && hamburger.value.classList) {
+      hamburger.value.classList.add('is-active')
+    }
+    if (menu.value && menu.value.classList) {
+      menu.value.classList.add('is-active')
+    }
+  })
+// const closeMenu = () => {
+//   document.getElementsByClassName('header__hamburger')[0].classList.remove('is-active')
+
+//   document.getElementsByClassName('header__menu')[0].classList.add('is-closing')
+
+//   setTimeout(() => {
+//     // document.getElementsByClassName('header__menu')[0].classList.remove('is-active is-closing')
+//     isShowMenu.value = false
+//   }, 600)
+}
 </script>
 
 <style scoped lang="scss">
-$pc: 961px;
-$tab: 960px;
-$sp: 520px;
-
-@mixin pc {
-  @media (min-width: ($pc)) {
-    @content;
-  }
-}
-@mixin tab {
-  @media (max-width: ($tab)) {
-    @content;
-  }
-}
-@mixin sp {
-  @media (max-width: ($sp)) {
-    @content;
-  }
-}
 .header {
   &__hamburger {
     outline: none;
@@ -98,7 +115,7 @@ $sp: 520px;
     padding: 0;
     transition: transform 0.3s ease;
 
-    @include sp {
+    @include scssMixin.sp {
       top: 20px;
       right: 20px;
       width: 50px;
@@ -117,7 +134,7 @@ $sp: 520px;
         &:nth-child(1) {
           transform: translateY(10px) rotate(45deg);
 
-          @include sp {
+          @include scssMixin.sp {
             transform: translateY(10px) rotate(45deg);
           }
         }
@@ -129,7 +146,7 @@ $sp: 520px;
         &:nth-child(3) {
           transform: translateY(-10px) rotate(-45deg);
 
-          @include sp {
+          @include scssMixin.sp {
             transform: translateY(-10px) rotate(-45deg);
           }
         }
@@ -144,7 +161,7 @@ $sp: 520px;
       transition: all 0.4s ease;
       transform-origin: center;
 
-      @include sp {
+      @include scssMixin.sp {
         width: 24px;
       }
     }
@@ -207,7 +224,7 @@ $sp: 520px;
       transition: clip-path 0.6s cubic-bezier(0.76, 0, 0.24, 1);
     }
 
-    @include sp {
+    @include scssMixin.sp {
       padding: 100px 30px 40px;
     }
 
@@ -218,7 +235,7 @@ $sp: 520px;
       width: 100%;
       max-width: 800px;
 
-      @include sp {
+      @include scssMixin.sp {
         max-width: 100%;
       }
     }
@@ -236,7 +253,7 @@ $sp: 520px;
       transition: all 0.3s ease;
       letter-spacing: 0.02em;
 
-      @include sp {
+      @include scssMixin.sp {
         font-size: 20px;
         padding: 16px 0;
       }
@@ -245,7 +262,7 @@ $sp: 520px;
         color: #007bff;
         padding-left: 20px;
 
-        @include sp {
+        @include scssMixin.sp {
           padding-left: 10px;
         }
       }
@@ -258,7 +275,7 @@ $sp: 520px;
         margin-top: 8px;
         letter-spacing: 0.05em;
 
-        @include sp {
+        @include scssMixin.sp {
           font-size: 12px;
           margin-top: 4px;
         }

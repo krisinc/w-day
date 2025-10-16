@@ -19,6 +19,7 @@
       <img :src="imgUrl(index)" />
       </swiper-slide>
     </swiper>
+
     <div class="container first">
       <div class="marquee">
         <ul>
@@ -55,7 +56,6 @@
             <span class="text">WEDDING DAY</span>
           </li>
         </ul>
-
       </div>
     </div>
   </div>
@@ -70,8 +70,7 @@ import 'swiper/css';
 
 const modules = [Autoplay]
 const imgUrl = (index) => {
-  const url = `./../../assets/swiperImg/img_${index}.jpg`
-  return new URL(url, import.meta.url).href
+  return new URL(`/src/assets/swiperImg/img_${index}.jpg`, import.meta.url).href
 }
 
 onMounted(() => {
@@ -98,6 +97,7 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
 .swiper-slide {
   width: 100vw !important;
   height: 100vh !important;
@@ -107,6 +107,10 @@ body {
   img {
     width: auto;
     height: 100%;
+    @include scssMixin.sp {
+      width: 100%;
+      height: auto;
+    }
   }
 }
 

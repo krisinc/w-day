@@ -5,10 +5,13 @@ import {
   createWebHistory
 } from 'vue-router'
 
+// console.warn('import.meta.env ', import.meta.env)
+// console.warn('import.meta.env.VITE_BASE_URL ', import.meta.env.VITE_BASE_URL)
+
 const routes = [
   {
     path: '/:pathMatch(.*)*',
-    redirect: '/',
+    redirect: import.meta.env.VITE_BASE_URL,
     meta: {
       hideBack: true
     },
@@ -16,7 +19,7 @@ const routes = [
     children: []
   },
   {
-    path: '/',
+    path: import.meta.env.VITE_BASE_URL,
     name: 'home',
     component: () => import('../pages/Home/index.vue')
     // beforeEnter:((to, from,next) => {
