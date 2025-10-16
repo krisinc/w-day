@@ -41,17 +41,18 @@ import { ref, watch, computed, onMounted } from "vue"
 const isShowMenu = ref(false)
 const navItems = ref([
   { title: "HOME", subTitle: "Home sweet home", path: "" },
-  { title: "", subTitle: "slotMachine", path: "slotMachine" },
+  { title: "GAME ON!", subTitle: "Kit Kat!", path: "slotMachine" },
   { title: "QUEST", subTitle: "Quest", path: "quest" },
 ])
 
 const closeMenu = () => {
-  $hamburger.removeClass('is-active')
+  document.getElementsByClassName('header__hamburger')[0].classList.remove('is-active')
 
-  $menu.addClass('is-closing')
+  document.getElementsByClassName('header__menu')[0].classList.add('is-closing')
 
   setTimeout(() => {
-    $menu.removeClass('is-active is-closing')
+    // document.getElementsByClassName('header__menu')[0].classList.remove('is-active is-closing')
+    isShowMenu.value = false
   }, 600)
 }
 const showMenu = () => {}
