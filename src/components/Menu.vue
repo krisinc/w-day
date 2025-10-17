@@ -44,7 +44,7 @@ const menu = ref(null)
 const isShowMenu = ref(false)
 const navItems = ref([
   { title: "HOME", subTitle: "Home sweet home", path: "" },
-  { title: "GAME ON!", subTitle: "Kit Kat!", path: "slotMachine" },
+  { title: "Kit Kat!", subTitle: "請為這張圖片配上一句好笑的話", path: "slotMachine" },
   { title: "QUEST", subTitle: "Quest", path: "quest" },
 ])
 
