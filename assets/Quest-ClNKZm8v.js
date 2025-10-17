@@ -1,4 +1,4 @@
-import{C as e,D as t,S as n,T as r,_ as i,a,b as o,h as s,i as c,l,n as u,o as d,s as f,t as p,u as m,y as h}from"./index-DYWCQ-ZW.js";var g={id:`Quest`},_=[`onClick`],v={class:`hexagon`},y=[`onClick`],b={class:`hexagon`},x=[`innerHTML`],S={class:`dialog-footer`},C=p({__name:`index`,setup(p){let C=e([{title:`歷史`,key:`history`,qaPair:[{content:`請問新郎新娘是在哪裡拍的照？`,answer:`台南，前面放了兩個小時喔。`},{content:`
+import{C as e,D as t,S as n,T as r,_ as i,a,b as o,h as s,i as c,l,n as u,o as d,s as f,t as p,u as m,y as h}from"./index-B31lYH20.js";var g={id:`Quest`},_=[`onClick`],v={class:`hexagon`},y=[`onClick`],b={class:`hexagon`},x=[`innerHTML`],S={class:`dialog-footer`},C=p({__name:`index`,setup(p){let C=e([{title:`歷史`,key:`history`,qaPair:[{content:`請問新郎新娘是在哪裡拍的照？`,answer:`台南，前面放了兩個小時喔。`},{content:`
             請問自由鋼彈的駕駛員是誰？<br>
             Ａ· 煌·大和。<br>
             Ｂ· 阿斯蘭·薩拉。<br>
